@@ -1,0 +1,29 @@
+services:
+
+  cjm.behat.psr7.client:
+    class: Symfony\Component\HttpKernel\Client
+    arguments:
+      - "@cjm.behat.psr7.kernel"
+
+  cjm.behat.psr7.kernel:
+    class: Cjm\Behat\Psr7Extension\SymfonyKernel
+    arguments:
+      - "@cjm.behat.psr7.file_app"
+      - "@cjm.behat.psr7.http_message_bridge.converter"
+
+  cjm.behat.psr7.file_app:
+    class: Cjm\Behat\Psr7Extension\AppFile\Psr7AppFile
+    arguments:
+      - "%cjm.behat.psr7.app%"
+
+  cjm.behat.psr7.http_message_bridge.converter:
+    class: Cjm\Behat\Psr7Extension\PsrHttpMessageBridge\SymfonyToPsr7Converter
+    arguments:
+      - "@cjm.behat.psr7.http_message_bridge.diactoros_factory"
+      - "@cjm.behat.psr7.http_message_bridge.http_foundation_factory"
+
+  cjm.behat.psr7.http_message_bridge.diactoros_factory:
+    class: Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory
+
+  cjm.behat.psr7.http_message_bridge.http_foundation_factory:
+    class: Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory
