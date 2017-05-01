@@ -35,7 +35,7 @@ Install via composer and configure your behat.yml, specifying the php file creat
 ```yaml
 extensions:
   Cjm\Behat\Psr7Extension:
-    file: %paths.base%/path/to/file.php
+    app: %paths.base%/path/to/file.php
 ```
 
 You can then also modify your MinkExtension configuration to use the PSR-7 driver, e.g.:
