@@ -4,6 +4,7 @@ namespace Cjm\Behat\Psr7Extension\AppFile;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\UriInterface;
 
 class Psr7AppFileTest extends TestCase
 {
@@ -31,7 +32,13 @@ class Psr7AppFileTest extends TestCase
         copy(__DIR__ . '/../../app.php', self::TMP_APP_FILE);
         $app = new Psr7AppFile(self::TMP_APP_FILE);
 
-        $response = $app->handle($this->createMock(RequestInterface::class));
+        $request = $this->createMock(RequestInterface::class);
+
+        $uri = $this->createMock(UriInterface::class);
+        $request->method('getUri')->willReturn($uri);
+        $uri->method('getQuery')->willReturn('name=Ciaran');
+
+        $response = $app->handle($request);
 
         $this->assertSame('Hello Ciaran', (string) $response->getBody());
     }
