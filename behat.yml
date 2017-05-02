@@ -17,3 +17,8 @@ expressive:
     Cjm\Behat\Psr7Extension:
       app: %paths.base%/example-apps/zend-expressive-app.php
 
+slim:
+  extensions:
+    Cjm\Behat\Psr7Extension:
+      app: %paths.base%/example-apps/slim-app.php
+
