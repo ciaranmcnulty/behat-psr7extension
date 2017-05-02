@@ -20,6 +20,8 @@ $app->get(
     },
     'index'
 );
+
 $app->pipeRoutingMiddleware();
 $app->pipeDispatchMiddleware();
+
 return $app;
