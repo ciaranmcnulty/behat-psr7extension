@@ -1,17 +1,19 @@
 default:
-
   suites:
     web:
       contexts:
         - Behat\MinkExtension\Context\MinkContext
-
   extensions:
-
     Behat\MinkExtension:
       base_url:  'http://localhost'
       sessions:
         default:
           psr7: ~
-
     Cjm\Behat\Psr7Extension:
-      app: %paths.base%/app.php
+      app: %paths.base%/example-apps/callback-app.php
+
+expressive:
+  extensions:
+    Cjm\Behat\Psr7Extension:
+      app: %paths.base%/example-apps/zend-expressive-app.php
+

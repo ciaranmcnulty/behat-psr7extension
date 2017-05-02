@@ -1,0 +1,6 @@
+services:
+
+    cjm.behat.psr7.factory.expressive:
+      class: Cjm\Behat\Psr7Extension\ZendExpressive\AppFactory
+      tags:
+        - { name: "cjm.behat.psr7.factory" }

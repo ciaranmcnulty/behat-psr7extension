@@ -1,3 +1,6 @@
+imports:
+    - { resource: "zend-expressive.yml" }
+
 services:
 
   cjm.behat.psr7.client:

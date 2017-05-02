@@ -16,3 +16,4 @@ install:
 script:
   - bin/phpunit
   - bin/behat
+  - bin/behat --profile=expressive

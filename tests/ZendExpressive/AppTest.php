@@ -13,9 +13,9 @@ use Zend\Diactoros\Uri;
 
 final class AppTest extends TestCase
 {
-    public function testItExecutesCallableToReturnResponse()
+    public function testItExecutesExpressiveAppToReturnResponse()
     {
-        $expressiveApp = include __DIR__ . '/expressive_app_example.php';
+        $expressiveApp = include __DIR__ . '/../../example-apps/zend-expressive-app.php';
         $app = new App($expressiveApp);
 
         $response = $app->handle(
