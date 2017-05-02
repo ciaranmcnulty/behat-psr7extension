@@ -4,14 +4,14 @@
  * Example application used by the test automation
  */
 
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response;
 
 // simplest possible app
 $app = new class
 {
-    function handle(RequestInterface $request) : ResponseInterface
+    function handle(ServerRequestInterface $request) : ResponseInterface
     {
         parse_str($request->getUri()->getQuery(), $params);
 
@@ -23,7 +23,7 @@ $app = new class
 };
 
 // callable wrapper for Behat
-return function (RequestInterface $request) use ($app) : ResponseInterface
+return function (ServerRequestInterface $request) use ($app) : ResponseInterface
 {
     return $app->handle($request);
 };
