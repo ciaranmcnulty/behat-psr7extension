@@ -8,6 +8,7 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 
 final class Psr7Extension implements Extension
 {
@@ -20,6 +21,19 @@ final class Psr7Extension implements Extension
         $loader->load('services.yml');
 
         $container->setParameter('cjm.behat.psr7.app', $config['app']);
+    }
+
+    /**
+     * Register tagged application factories
+     */
+    public function process(ContainerBuilder $container)
+    {
+        $definition = $container->getDefinition('cjm.behat.psr7.loader');
+        $taggedServices = $container->findTaggedServiceIds('cjm.behat.psr7.factory');
+
+        foreach ($taggedServices as $id => $tags) {
+            $definition->addArgument(new Reference($id));
+        }
     }
 
     /**
@@ -51,12 +65,5 @@ final class Psr7Extension implements Extension
                 ->scalarNode('app')
             ->end()
         ->end();
-    }
-
-    /**
-     * No post-processing needed
-     */
-    public function process(ContainerBuilder $container)
-    {
     }
 }
