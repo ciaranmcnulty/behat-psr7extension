@@ -14,5 +14,5 @@ install:
   - composer install
 
 script:
-  - bin/phpunit
-  - bin/behat
+  - vendor/bin/phpunit
+  - vendor/bin/behat
