@@ -3,8 +3,8 @@
 namespace Cjm\Behat\Psr7Extension\AppFile;
 
 use Cjm\Behat\Psr7Extension\Psr7App;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 
 final class Psr7AppFile implements Psr7App
 {
@@ -19,7 +19,7 @@ final class Psr7AppFile implements Psr7App
         $this->path = $path;
     }
 
-    public function handle(RequestInterface $request): ResponseInterface
+    public function handle(Request $request): Response
     {
         $callable = include $this->path;
 

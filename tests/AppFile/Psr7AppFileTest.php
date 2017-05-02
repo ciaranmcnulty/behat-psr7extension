@@ -3,7 +3,7 @@
 namespace Cjm\Behat\Psr7Extension\AppFile;
 
 use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UriInterface;
 
 class Psr7AppFileTest extends TestCase
@@ -24,7 +24,7 @@ class Psr7AppFileTest extends TestCase
 
         $this->expectException(Psr7AppFileException::class);
 
-        $app->handle($this->createMock(RequestInterface::class));
+        $app->handle($this->createMock(ServerRequestInterface::class));
     }
 
     function testItExecutesCallableToReturnResponse()
@@ -32,7 +32,7 @@ class Psr7AppFileTest extends TestCase
         copy(__DIR__ . '/../../app.php', self::TMP_APP_FILE);
         $app = new Psr7AppFile(self::TMP_APP_FILE);
 
-        $request = $this->createMock(RequestInterface::class);
+        $request = $this->createMock(ServerRequestInterface::class);
 
         $uri = $this->createMock(UriInterface::class);
         $request->method('getUri')->willReturn($uri);
