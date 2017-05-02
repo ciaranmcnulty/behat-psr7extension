@@ -8,13 +8,23 @@ services:
   cjm.behat.psr7.kernel:
     class: Cjm\Behat\Psr7Extension\SymfonyKernel
     arguments:
-      - "@cjm.behat.psr7.file_app"
+      - "@cjm.behat.psr7.app"
       - "@cjm.behat.psr7.http_message_bridge.converter"
 
-  cjm.behat.psr7.file_app:
-    class: Cjm\Behat\Psr7Extension\AppFile\Psr7AppFile
+  cjm.behat.psr7.app:
+    class: Cjm\Behat\Psr7Extension\Psr7App
+    factory: "cjm.behat.psr7.loader:load"
     arguments:
       - "%cjm.behat.psr7.app%"
+
+  cjm.behat.psr7.loader:
+    class: Cjm\Behat\Psr7Extension\AppFile\Loader
+    arguments: [] # receives services tagged as cjm.behat.psr7.factory
+
+  cjm.behat.psr7.factory.callback:
+    class: Cjm\Behat\Psr7Extension\Callback\AppFactory
+    tags:
+      - { name: "cjm.behat.psr7.factory" }
 
   cjm.behat.psr7.http_message_bridge.converter:
     class: Cjm\Behat\Psr7Extension\PsrHttpMessageBridge\SymfonyToPsr7Converter

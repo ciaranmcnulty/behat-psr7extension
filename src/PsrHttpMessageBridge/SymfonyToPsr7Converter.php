@@ -9,6 +9,9 @@ use Symfony\Bridge\PsrHttpMessage\HttpMessageFactoryInterface;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
 
+/**
+ * Converts between formats using psr-http-message-bridge
+ */
 class SymfonyToPsr7Converter implements \Cjm\Behat\Psr7Extension\SymfonyToPsr7Converter
 {
     private $psr7Factory;
