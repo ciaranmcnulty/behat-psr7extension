@@ -17,3 +17,4 @@ script:
   - vendor/bin/phpunit
   - vendor/bin/behat
   - vendor/bin/behat --profile=expressive
+  - vendor/bin/behat --profile=slim
