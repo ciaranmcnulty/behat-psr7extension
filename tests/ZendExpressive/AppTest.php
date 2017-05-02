@@ -24,6 +24,6 @@ final class AppTest extends TestCase
                 ->withQueryParams(['name' => 'Ciaran'])
         );
 
-        self::assertSame('Hello Ciaran', (string) $response->getBody());
+        $this->assertSame('Hello Ciaran', (string) $response->getBody());
     }
 }
