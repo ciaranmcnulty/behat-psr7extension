@@ -9,28 +9,9 @@ It's currently built by combining:
 
 ... and integrating into a behat extension
 
-# Usage
+## Usage
 
-Because there is no current standard interface for PSR-7-handling apps, you will need to create a function that can 
-exercise your application.
-
-```php
-<?php
-
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-
-// bootstrap your application
-$app = new My\App();
-
-return function (RequestInterface $request) use ($app) : ResponseInterface
-{
-    // exercise your application however you normally would
-    return $app->handle($request);
-};
-```
-
-Install via composer and configure your behat.yml, specifying the php file created in the step above:
+Install via composer and configure your behat.yml, specifying the php file that will bootstrap the app (see below):
 
 ```yaml
 extensions:
@@ -48,3 +29,37 @@ Behat\MinkExtension:
     default:
       psr7: ~
 ```
+
+Because there is no current standard interface for PSR-7-handling apps, you will need to select one of the following 
+supported approaches.
+
+## Zend Expressive applications
+
+Your configuration file will need to return your application file, bootstrapped. For example:
+
+```php
+$container = require __DIR__ . '/../config/container.php';
+return $container->get('Zend\Expressive\Application');
+```
+
+## All other PSR-7 applications
+
+As long as you can write a function that takes a request and returns a response, you should be able to test your app. 
+Your configuration file will need to return return a callable with the right signature. For example:
+
+```php
+<?php
+
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+// bootstrap your application
+$app = new My\App();
+
+return function (RequestInterface $request) use ($app) : ResponseInterface
+{
+    // exercise your application however you normally would
+    return $app->handle($request);
+};
+```
+
