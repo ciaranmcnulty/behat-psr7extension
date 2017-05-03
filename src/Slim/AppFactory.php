@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Cjm\Behat\Psr7Extension\Slim;
 
 use Cjm\Behat\Psr7Extension\Psr7App;
