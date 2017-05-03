@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 namespace Cjm\Behat\Psr7Extension\Slim;
 
@@ -11,7 +10,6 @@ use Slim\Http\Response;
 
 final class App implements Psr7App
 {
-
     private $slimApp;
 
     public function __construct(Application $slimApp)
