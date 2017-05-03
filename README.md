@@ -42,6 +42,18 @@ $container = require __DIR__ . '/../config/container.php';
 return $container->get('Zend\Expressive\Application');
 ```
 
+## Slim applications
+
+Your configuration file will need to return your application file, bootstrapped. For example:
+
+```php
+<?php
+
+$app = new \Slim\App;
+// .. any necessary bootstrapping
+return $app;
+```
+
 ## All other PSR-7 applications
 
 As long as you can write a function that takes a request and returns a response, you should be able to test your app. 
