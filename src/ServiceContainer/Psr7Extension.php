@@ -62,7 +62,7 @@ final class Psr7Extension implements Extension
     {
         $builder
             ->children()
-                ->scalarNode('app')
+                ->scalarNode('app')->isRequired()->end()
             ->end()
         ->end();
     }
