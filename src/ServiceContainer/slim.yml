@@ -1,0 +1,6 @@
+services:
+
+    cjm.behat.psr7.factory.slim:
+      class: Cjm\Behat\Psr7Extension\Slim\AppFactory
+      tags:
+        - { name: "cjm.behat.psr7.factory" }
