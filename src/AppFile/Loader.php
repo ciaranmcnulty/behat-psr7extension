@@ -21,13 +21,7 @@ class Loader implements Psr7AppLoader
 
     public function load(string $path): Psr7App
     {
-        if (!file_exists($path)) {
-            throw new LoaderException('No file found at ' . $path);
-        }
-
-        if (!($type = include $path)) {
-            throw new LoaderException('File at ' . $path . ' did not return');
-        }
+        $type = $this->loadFromFile($path);
 
         foreach ($this->factories as $factory) {
             if ($app = $factory->createFrom($type)) {
@@ -35,17 +29,21 @@ class Loader implements Psr7AppLoader
             }
         }
 
-        throw new LoaderException('Do not know how to create an app from ' . $this->type($type));
+        throw new UnknownType($type);
     }
 
-    private function type($type) : string
+    private function loadFromFile(string $path)
     {
-        $str = gettype($type);
-
-        if ($str == 'object') {
-            $str = 'object:' . get_class($type);
+        if (!file_exists($path)) {
+            throw new FileNotFound($path);
         }
 
-        return $str;
+        $type = include $path;
+
+        if (1 === $type) {
+            throw new InvalidFile($path);
+        }
+
+        return $type;
     }
 }
