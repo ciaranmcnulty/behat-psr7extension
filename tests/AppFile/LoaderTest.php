@@ -21,16 +21,16 @@ class LoaderTest extends TestCase
 
     function testItComplainsIfFileDoesNotExist()
     {
-        $this->expectException(LoaderException::class);
+        $this->expectException(FileNotFound::class);
 
         $this->loader->load(self::TMP_APP_FILE);
     }
 
-    function testItThrowsExceptionIfFileReturnsNull()
+    function testItThrowsExceptionIfFileDoesNotReturn()
     {
-        $this->expectException(LoaderException::class);
+        $this->expectException(InvalidFile::class);
 
-        file_put_contents(self::TMP_APP_FILE, '<?php return null;');
+        file_put_contents(self::TMP_APP_FILE, '<?php ');
 
         $this->loader->load(self::TMP_APP_FILE);
     }
@@ -39,7 +39,7 @@ class LoaderTest extends TestCase
     {
         file_put_contents(self::TMP_APP_FILE, '<?php return "no idea";');
 
-        $this->expectException(LoaderException::class);
+        $this->expectException(UnknownType::class);
 
         $this->loader->load(self::TMP_APP_FILE);
     }
