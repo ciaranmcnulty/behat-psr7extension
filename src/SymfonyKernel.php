@@ -17,9 +17,9 @@ final class SymfonyKernel implements HttpKernelInterface
     private $app;
     private $converter;
 
-    public function __construct(Psr7App $app, SymfonyToPsr7Converter $converter)
+    public function __construct(Psr7AppLoader $loader, SymfonyToPsr7Converter $converter)
     {
-        $this->app = $app;
+        $this->app = $loader->load();
         $this->converter = $converter;
     }
 

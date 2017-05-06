@@ -12,12 +12,8 @@ services:
   cjm.behat.psr7.kernel:
     class: Cjm\Behat\Psr7Extension\SymfonyKernel
     arguments:
-      - "@cjm.behat.psr7.app"
+      - "@cjm.behat.psr7.loader"
       - "@cjm.behat.psr7.http_message_bridge.converter"
-
-  cjm.behat.psr7.app:
-    class: Cjm\Behat\Psr7Extension\Psr7App
-    factory: "cjm.behat.psr7.loader:load"
 
   cjm.behat.psr7.loader:
     class: Cjm\Behat\Psr7Extension\AppFile\Loader
