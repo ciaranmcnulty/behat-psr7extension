@@ -14,13 +14,13 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
  */
 final class SymfonyKernel implements HttpKernelInterface
 {
-    private $app;
     private $converter;
+    private $loader;
 
     public function __construct(Psr7AppLoader $loader, SymfonyToPsr7Converter $converter)
     {
-        $this->app = $loader->load();
         $this->converter = $converter;
+        $this->loader = $loader;
     }
 
     /**
@@ -29,7 +29,7 @@ final class SymfonyKernel implements HttpKernelInterface
     public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true)
     {
         return $this->converter->convertResponse(
-            $this->app->handle(
+            $this->loader->load()->handle(
                 $this->converter->convertRequest($request)
             )
         );
