@@ -15,6 +15,7 @@ class LoaderTest extends TestCase
     function setUp()
     {
         $this->loader = new Loader(
+            self::TMP_APP_FILE,
             $this->createMock(Psr7AppFactory::class)
         );
     }
@@ -23,7 +24,7 @@ class LoaderTest extends TestCase
     {
         $this->expectException(FileNotFound::class);
 
-        $this->loader->load(self::TMP_APP_FILE);
+        $this->loader->load();
     }
 
     function testItThrowsExceptionIfFileDoesNotReturn()
@@ -32,7 +33,7 @@ class LoaderTest extends TestCase
 
         file_put_contents(self::TMP_APP_FILE, '<?php ');
 
-        $this->loader->load(self::TMP_APP_FILE);
+        $this->loader->load();
     }
 
     function testItThrowsExceptionIfNoFactoryCanMakeApp()
@@ -41,12 +42,13 @@ class LoaderTest extends TestCase
 
         $this->expectException(UnknownType::class);
 
-        $this->loader->load(self::TMP_APP_FILE);
+        $this->loader->load();
     }
 
     function testItCreatesAnAppIfAFactoryCan()
     {
         $this->loader = new Loader(
+            self::TMP_APP_FILE,
             $factory1 = $this->createMock(Psr7AppFactory::class),
             $factory2 = $this->createMock(Psr7AppFactory::class)
         );
@@ -56,7 +58,7 @@ class LoaderTest extends TestCase
 
         $factory2->method('createFrom')->willReturn($app);
 
-        $this->assertSame($app, $this->loader->load(self::TMP_APP_FILE));
+        $this->assertSame($app, $this->loader->load());
     }
 
     function tearDown()

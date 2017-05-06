@@ -8,5 +8,5 @@ namespace Cjm\Behat\Psr7Extension;
  */
 interface Psr7AppLoader
 {
-    public function load(string $config) : Psr7App;
+    public function load() : Psr7App;
 }

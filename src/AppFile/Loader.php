@@ -12,16 +12,18 @@ use Cjm\Behat\Psr7Extension\Psr7AppLoader;
  */
 class Loader implements Psr7AppLoader
 {
+    private $path;
     private $factories;
 
-    public function __construct(Psr7AppFactory ...$factories)
+    public function __construct(string $path, Psr7AppFactory ...$factories)
     {
         $this->factories = $factories;
+        $this->path = $path;
     }
 
-    public function load(string $path): Psr7App
+    public function load(): Psr7App
     {
-        $type = $this->loadFromFile($path);
+        $type = $this->loadFromFile($this->path);
 
         foreach ($this->factories as $factory) {
             if ($app = $factory->createFrom($type)) {
