@@ -11,4 +11,6 @@ use Psr\Http\Message\ResponseInterface as Response;
 interface Psr7App
 {
     public function handle(Request $request) : Response;
+
+    public function getNativeApp();
 }

@@ -23,4 +23,9 @@ class App implements Psr7App
     {
         return ($this->callback)($request);
     }
+
+	public function getNativeApp() : callable
+	{
+		return $this->callback;
+	}
 }
