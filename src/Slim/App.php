@@ -25,4 +25,9 @@ final class App implements Psr7App
             new Response()
         );
     }
+
+	public function getNativeApp() : Application
+	{
+		return $this->expressiveApp;
+	}
 }

@@ -42,3 +42,11 @@ services:
 
   cjm.behat.psr7.http_message_bridge.http_foundation_factory:
     class: Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory
+
+  cjm.behat.psr7.helper:
+    class: Cjm\Behat\Psr7Extension\ServiceContainer\HelperContainer
+    shared: false
+    arguments:
+      - "@cjm.behat.psr7.caching_loader"
+    tags:
+      - { name: "helper_container.container" }

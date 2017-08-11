@@ -3,11 +3,13 @@ declare(strict_types=1);
 
 namespace Cjm\Behat\Psr7Extension\ServiceContainer;
 
+use Behat\Behat\Context\ServiceContainer\ContextExtension;
 use Behat\Testwork\ServiceContainer\Extension;
 use Behat\Testwork\ServiceContainer\ExtensionManager;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 
@@ -22,6 +24,13 @@ final class Psr7Extension implements Extension
         $loader->load('services.yml');
 
         $container->setParameter('cjm.behat.psr7.app', $config['app']);
+
+	    $definition = (new Definition(AppAwareInitializer::class, [
+	    	new Reference('cjm.behat.psr7.caching_loader')
+	    ]))->addTag(ContextExtension::INITIALIZER_TAG, [
+	    	'priority' => 0
+	    ]);
+	    $container->setDefinition('cjm.behat.psr7.context_initializer', $definition);
     }
 
     /**
