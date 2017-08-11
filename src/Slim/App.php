@@ -28,6 +28,6 @@ final class App implements Psr7App
 
 	public function getNativeApp() : Application
 	{
-		return $this->expressiveApp;
+		return $this->slimApp;
 	}
 }
