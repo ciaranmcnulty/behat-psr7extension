@@ -19,9 +19,6 @@ final class App implements Psr7App
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->expressiveApp->process(
-            $request,
-            $this->expressiveApp->getDefaultDelegate()
-        );
+        return $this->expressiveApp->handle($request);
     }
 }
