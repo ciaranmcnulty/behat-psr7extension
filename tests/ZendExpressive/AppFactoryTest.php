@@ -2,8 +2,6 @@
 
 namespace Cjm\Behat\Psr7Extension\ZendExpressive;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Zend\Expressive\Application;
 
 class AppFactoryTest extends \PHPUnit\Framework\TestCase
