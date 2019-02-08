@@ -15,7 +15,7 @@ final class AppTest extends TestCase
 {
     public function testItExecutesExpressiveAppToReturnResponse()
     {
-        $expressiveApp = include __DIR__ . '/../../example-apps/zend-expressive-app.php';
+        $expressiveApp = include __DIR__ . '/../../example-apps/zend-expressive/zend-expressive-app.php';
         $app = new App($expressiveApp);
 
         $response = $app->handle(
