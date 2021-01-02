@@ -1,6 +1,5 @@
 imports:
     - { resource: "mezzio.yml" }
-    - { resource: "zend-expressive.yml" }
     - { resource: "slim.yml" }
 
 services:
