@@ -10,15 +10,19 @@ default:
         default:
           psr7: ~
     Cjm\Behat\Psr7Extension:
-      app: %paths.base%/example-apps/callback-app.php
+      app: "%paths.base%/example-apps/callback-app.php"
 
 expressive:
   extensions:
     Cjm\Behat\Psr7Extension:
-      app: %paths.base%/example-apps/zend-expressive-app.php
+      app: "%paths.base%/example-apps/zend-expressive-app.php"
 
 slim:
   extensions:
     Cjm\Behat\Psr7Extension:
-      app: %paths.base%/example-apps/slim-app.php
+      app: "%paths.base%/example-apps/slim-app.php"
 
+mezzio:
+  extensions:
+    Cjm\Behat\Psr7Extension:
+      app: "%paths.base%/example-apps/mezzio-app.php"
