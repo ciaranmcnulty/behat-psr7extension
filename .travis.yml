@@ -7,8 +7,8 @@ cache:
     - $HOME/.composer/cache
 
 php:
-  - 7.0
-  - 7.1
+  - 7.3
+  - 7.4
 
 install:
   - composer install
@@ -16,5 +16,5 @@ install:
 script:
   - vendor/bin/phpunit
   - vendor/bin/behat
-  - vendor/bin/behat --profile=expressive
+  - vendor/bin/behat --profile=mezzio
   - vendor/bin/behat --profile=slim

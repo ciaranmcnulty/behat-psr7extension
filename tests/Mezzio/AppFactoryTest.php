@@ -1,10 +1,10 @@
 <?php
 
-namespace Cjm\Behat\Psr7Extension\ZendExpressive;
+namespace Cjm\Behat\Psr7Extension\Mezzio;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Expressive\Application;
+use Mezzio\Application;
 
 class AppFactoryTest extends \PHPUnit\Framework\TestCase
 {
@@ -15,14 +15,14 @@ class AppFactoryTest extends \PHPUnit\Framework\TestCase
         $this->factory = new AppFactory;
     }
 
-    function testItDoesNotCreateAppFromNonZendExpressiveApp()
+    function testItDoesNotCreateAppFromNonMezzioApp()
     {
         $app = $this->factory->createFrom(new \StdClass);
 
         $this->assertSame(null, $app);
     }
 
-    function testItCreatesAnAppFromAZendExpressiveApp()
+    function testItCreatesAnAppFromAMezzioApp()
     {
         $app = $this->factory->createFrom($this->createMock(Application::class));
 

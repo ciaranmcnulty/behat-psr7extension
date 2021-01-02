@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Cjm\Behat\Psr7Extension\ZendExpressive;
+namespace Cjm\Behat\Psr7Extension\Mezzio;
 
 use Cjm\Behat\Psr7Extension\Psr7App;
 use Cjm\Behat\Psr7Extension\Psr7AppFactory;
-use Zend\Expressive\Application;
+use Mezzio\Application;
 
 class AppFactory implements Psr7AppFactory
 {

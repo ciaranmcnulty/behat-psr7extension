@@ -1,0 +1,6 @@
+services:
+
+    cjm.behat.psr7.factory.mezzio:
+      class: Cjm\Behat\Psr7Extension\Mezzio\AppFactory
+      tags:
+        - { name: "cjm.behat.psr7.factory" }

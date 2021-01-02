@@ -30,16 +30,16 @@ Behat\MinkExtension:
       psr7: ~
 ```
 
-Because there is no current standard interface for PSR-7-handling apps, you will need to select one of the following 
+Because there is no current standard interface for PSR-7-handling apps, you will need to select one of the following
 supported approaches.
 
-## Zend Expressive applications
+## Mezzio (previously Zend Expressive) applications
 
 Your configuration file will need to return your application file, bootstrapped. For example:
 
 ```php
 $container = require __DIR__ . '/../config/container.php';
-return $container->get('Zend\Expressive\Application');
+return $container->get(\Mezzio\Application::class);
 ```
 
 ## Slim applications
@@ -56,7 +56,7 @@ return $app;
 
 ## All other PSR-7 applications
 
-As long as you can write a function that takes a request and returns a response, you should be able to test your app. 
+As long as you can write a function that takes a request and returns a response, you should be able to test your app.
 Your configuration file will need to return return a callable with the right signature. For example:
 
 ```php
@@ -74,4 +74,3 @@ return function (RequestInterface $request) use ($app) : ResponseInterface
     return $app->handle($request);
 };
 ```
-
